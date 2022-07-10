@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/drawable/burger.xml" value="0.1955" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/drawable/group_premium.xml" value="0.2265" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/drawable/ic_group.xml" value="0.2265" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/activity_gallery.xml" value="0.176" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/activity_main.xml" value="0.3472222222222222" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/content_gallery.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/dialog_layout.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/fragment_image.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/fragment_video.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/grid_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/item_receler_green.xml" value="0.176" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/item_recycler_blue.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/layout/nav_header.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/menu/nav_header_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/menu/premium_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidProjects/Gallerytesttask/app/src/main/res/menu/some.xml" value="0.253125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
