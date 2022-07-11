@@ -50,10 +50,14 @@ class ImageFragmentViewModel @Inject constructor(
         column_index_data = cursor!!.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)
         column_index_folder_name = cursor
             .getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME)
-        while (cursor.moveToNext()) {
-            absolutePathOfImage = cursor.getString(column_index_data)
-            listOfAllImages.add(absolutePathOfImage)
+        if (cursor!=null){
+            while (cursor.moveToNext()) {
+                absolutePathOfImage = cursor.getString(column_index_data)
+                listOfAllImages.add(absolutePathOfImage)
+            }
+            cursor.close()
         }
+
         return listOfAllImages
     }
 

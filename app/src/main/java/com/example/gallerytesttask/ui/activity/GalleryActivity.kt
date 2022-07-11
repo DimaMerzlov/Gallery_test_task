@@ -1,9 +1,11 @@
-package com.example.gallerytesttask.ui
+package com.example.gallerytesttask.ui.activity
 
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
@@ -31,6 +33,7 @@ class GalleryActivity : AppCompatActivity() {
         tabLayout = binding.tabLayout
         viewPager = binding.viewPager
         initViewPager()
+        setUpActionBar()
     }
 
     private fun initViewPager() {
@@ -47,6 +50,31 @@ class GalleryActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.premium_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show()
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (viewPager.currentItem == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed()
+        } else {
+            // Otherwise, select the previous step.
+            viewPager.currentItem = viewPager.currentItem - 1
+        }
+    }
+
+    private fun setUpActionBar(){
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.back_arrow);//your icon here
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
 }

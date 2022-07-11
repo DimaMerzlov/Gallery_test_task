@@ -16,10 +16,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ImageAdapter @Inject constructor(
-    @ApplicationContext private val context: Context,
-) : RecyclerView.Adapter<ImageAdapter.ItemHolder>() {
+class VideoAdapter @Inject constructor(
+    @ApplicationContext
+    private val context: Context,
+) : RecyclerView.Adapter<VideoAdapter.ItemVideoHolder>() {
     private var list = mutableListOf<GalleryItem>()
+
     private lateinit var clickListener: IClickListenerItem
 
     fun setIClickListenerItem(clickListenerItem: IClickListenerItem) {
@@ -27,8 +29,7 @@ class ImageAdapter @Inject constructor(
     }
 
 
-    inner class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+    inner class ItemVideoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: String) {
             if (icon != null) {
                 Glide.with(context)
@@ -41,25 +42,6 @@ class ImageAdapter @Inject constructor(
         }
 
         private val icon = itemView.findViewById<ImageView>(R.id.grid_image)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        var view: View
-        if (viewType == EnumItem.IS_NOT_EMPTY.ordinal) {
-            view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.grid_item, parent, false)
-        } else if (viewType == EnumItem.IS_EMPTY_GREEN.ordinal) {
-            view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_recycler_green, parent, false)
-        } else {
-            view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_recycler_blue, parent, false)
-        }
-        return ItemHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.bind(list[position].uri)
     }
 
     override fun getItemCount(): Int {
@@ -82,8 +64,23 @@ class ImageAdapter @Inject constructor(
     fun getItemByPosition(position: Int): GalleryItem {
         return list[position]
     }
-}
 
-interface IClickListenerItem {
-    fun click(item: String)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemVideoHolder {
+        var view: View
+        if (viewType == EnumItem.IS_NOT_EMPTY.ordinal) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.grid_item, parent, false)
+        } else if (viewType == EnumItem.IS_EMPTY_GREEN.ordinal) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_recycler_green, parent, false)
+        } else {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_recycler_blue, parent, false)
+        }
+        return ItemVideoHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ItemVideoHolder, position: Int) {
+        holder.bind(list[position].uri)
+    }
 }

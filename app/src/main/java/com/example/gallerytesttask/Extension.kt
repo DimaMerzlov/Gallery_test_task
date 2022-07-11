@@ -1,6 +1,7 @@
 package com.example.gallerytesttask
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.MaterialDialog
@@ -43,6 +44,7 @@ fun ArrayList<String>.toListGallery():List<GalleryItem>{
     var isGreen=true
     var listItems= mutableListOf<GalleryItem>()
     for (item in this) {
+        Log.d("toListGallery",item.toString())
         count++
         if (count<3){
             listItems.add(GalleryItem(item, EnumItem.IS_NOT_EMPTY))

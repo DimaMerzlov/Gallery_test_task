@@ -19,4 +19,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gallery_">Gallery</string>
+    <string name="save">Save</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
 </resources>

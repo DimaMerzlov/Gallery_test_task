@@ -1,4 +1,4 @@
-package com.example.gallerytesttask.ui
+package com.example.gallerytesttask.ui.activity
 
 import android.Manifest
 import android.content.Intent
@@ -40,10 +40,8 @@ class MainActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 if (Environment.isExternalStorageManager()) {
                     viewModel.isCheckPermission(checkPermission())
-                    Toast.makeText(this, "permision granted", Toast.LENGTH_SHORT).show()
                 } else {
                     viewModel.isCheckPermission(checkPermission())
-                    Toast.makeText(this, "permision not granted", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 //android is below R
@@ -90,10 +88,8 @@ class MainActivity : AppCompatActivity() {
             val intent = try {
                 intent = Intent()
                 intent.action = Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
-                Log.d("Without error", "")
                 intent.setData(Uri.parse("package:${BuildConfig.APPLICATION_ID}"))
             } catch (e: Exception) {
-                Log.d("Error", e.toString())
                 intent = Intent()
                 intent.action = Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
                 intent
