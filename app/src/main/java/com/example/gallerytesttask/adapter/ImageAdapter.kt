@@ -1,7 +1,7 @@
 package com.example.gallerytesttask.adapter
 
+import android.R.attr.data
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +14,7 @@ import com.example.gallerytesttask.model.GalleryItem
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 class ImageAdapter @Inject constructor(
@@ -81,6 +82,11 @@ class ImageAdapter @Inject constructor(
 
     fun getItemByPosition(position: Int): GalleryItem {
         return list[position]
+    }
+    fun clear() {
+        val size: Int = list.size
+        list.clear()
+        notifyItemRangeRemoved(0, size)
     }
 }
 

@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 val write = grantResults[0] == PackageManager.PERMISSION_GRANTED
                 val read = grantResults[1] == PackageManager.PERMISSION_GRANTED
                 if (write && read) {
-                    Log.d("Create folder", "Create folder")
+                    startActivity(Intent(this, GalleryActivity::class.java))
                 } else {
                     Log.d("External storage", "permission denied")
                 }

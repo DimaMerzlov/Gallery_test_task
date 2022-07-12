@@ -39,14 +39,24 @@ class ImageFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_image, container, false);
         initAdapter()
+        Log.d("Gragment","onCreateView")
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        imageAdapter.clear()
+        viewModel.getAllImages()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe()
+
         viewModel.getAllImages()
     }
+
+
 
     private fun observe() {
         viewModel.getImageList().observe(viewLifecycleOwner) { list ->

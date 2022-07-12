@@ -85,5 +85,10 @@ class VideoFragment : Fragment() {
     companion object{
         val VIDEO_URI="video uri"
     }
+    override fun onStart() {
+        super.onStart()
+        videoAdapter.clear()
+        viewModel.getAllVideo()
+    }
 
 }

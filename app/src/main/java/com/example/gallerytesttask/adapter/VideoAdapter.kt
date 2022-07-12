@@ -83,4 +83,10 @@ class VideoAdapter @Inject constructor(
     override fun onBindViewHolder(holder: ItemVideoHolder, position: Int) {
         holder.bind(list[position].uri)
     }
+
+    fun clear() {
+        val size: Int = list.size
+        list.clear()
+        notifyItemRangeRemoved(0, size)
+    }
 }
