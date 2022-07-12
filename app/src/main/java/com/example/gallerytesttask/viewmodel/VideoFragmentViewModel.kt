@@ -2,6 +2,7 @@ package com.example.gallerytesttask.viewmodel
 
 import android.content.Context
 import android.provider.MediaStore
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.gallerytesttask.model.GalleryItem
@@ -38,16 +39,18 @@ class VideoFragmentViewModel @Inject constructor(
             //Log.d(TAG, "Total count of videos: " + vidsCount);
             while (cursor.moveToNext()) {
                 pathArrList.add(cursor.getString(0))
-                //Log.d(TAG, cursor.getString(0));
             }
             cursor.close()
         }
+        Log.d("getAllVideoPath", pathArrList.size.toString());
+
         return pathArrList
     }
 
     fun getAllVideo() {
         launch(Dispatchers.Main) {
             videoLiveData.value = withContext(Dispatchers.IO) {
+                Log.d("getAllVideoPath",getAllVideoPath().toString())
                 getAllVideoPath().toListGallery()
             }
         }

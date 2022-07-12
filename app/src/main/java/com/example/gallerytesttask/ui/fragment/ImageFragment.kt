@@ -39,7 +39,6 @@ class ImageFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_image, container, false);
         initAdapter()
-        Log.d("Gragment","onCreateView")
         return binding.root
     }
 

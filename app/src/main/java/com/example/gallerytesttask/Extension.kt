@@ -11,7 +11,7 @@ import com.example.gallerytesttask.model.EnumItem
 import com.example.gallerytesttask.model.GalleryItem
 
 fun Context?.showGalleryDialog(
-    sureClickListener: (bool:Boolean) -> Unit
+    sureClickListener: (bool: Boolean) -> Unit
 ) {
     this?.let { context ->
 
@@ -39,25 +39,25 @@ fun Context?.showGalleryDialog(
     }
 }
 
-fun ArrayList<String>.toListGallery():List<GalleryItem>{
-    var count=0
-    var isGreen=true
-    var listItems= mutableListOf<GalleryItem>()
+fun ArrayList<String>.toListGallery(): List<GalleryItem> {
+    var count = -1
+    var isGreen = true
+    var listItems = mutableListOf<GalleryItem>()
     for (item in this) {
-        Log.d("toListGallery",item.toString())
         count++
-        if (count<3){
+        if (count < 2) {
             listItems.add(GalleryItem(item, EnumItem.IS_NOT_EMPTY))
-        }else{
-            count=0
-            if (isGreen){
-                listItems.add(GalleryItem(item, EnumItem.IS_EMPTY_GREEN))
-                isGreen=false
-            }else{
-                listItems.add(GalleryItem(item, EnumItem.IS_EMPTY_BLUE))
-                isGreen=true
+        } else {
+            count = 0
+            if (isGreen) {
+                listItems.add(GalleryItem("", EnumItem.IS_EMPTY_GREEN))
+                isGreen = false
+                listItems.add(GalleryItem(item, EnumItem.IS_NOT_EMPTY))
+            } else {
+                listItems.add(GalleryItem("", EnumItem.IS_EMPTY_BLUE))
+                isGreen = true
+                listItems.add(GalleryItem(item, EnumItem.IS_NOT_EMPTY))
             }
-
         }
     }
     return listItems

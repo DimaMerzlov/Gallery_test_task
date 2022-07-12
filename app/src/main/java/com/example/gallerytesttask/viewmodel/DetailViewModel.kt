@@ -1,6 +1,5 @@
 package com.example.gallerytesttask.viewmodel
 
-import android.R.attr.data
 import android.content.ContentValues
 import android.content.Context
 import android.content.res.AssetFileDescriptor
@@ -155,14 +154,14 @@ class DetailViewModel @Inject constructor(
         try {
             val newfile: File
             val videoAsset: AssetFileDescriptor? =
-                context.getContentResolver().openAssetFileDescriptor(Uri.fromFile(File(uri)), "r")
+                context.contentResolver.openAssetFileDescriptor(Uri.fromFile(File(uri)), "r")
             val inputStream: FileInputStream? = videoAsset?.createInputStream()
             val filepath = Environment.getExternalStorageDirectory()
             val dir = File(filepath.absolutePath + "/" + "Your Folder Name" + "/")
             if (!dir.exists()) {
                 dir.mkdirs()
             }
-            newfile = File(dir, "save_" + System.currentTimeMillis() + ".mp4")
+            newfile = File(dir, "video_" + System.currentTimeMillis() + ".mp4")
             if (newfile.exists()) newfile.delete()
             val out: OutputStream = FileOutputStream(newfile)
 
@@ -188,4 +187,5 @@ class DetailViewModel @Inject constructor(
     fun deleteVideo(uri: String): Boolean {
         return File(uri).delete()
     }
+
 }
