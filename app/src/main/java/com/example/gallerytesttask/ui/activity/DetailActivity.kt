@@ -29,6 +29,9 @@ import java.util.*
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private var uri = ""
+    private var type = ""
+    private val IMAGAE = "image"
+    private val VIDEO = "video"
 
     val viewModel by viewModels<DetailViewModel>()
 
@@ -49,18 +52,29 @@ class DetailActivity : AppCompatActivity() {
                 shareImage()
             }
             cardViewSave.setOnClickListener {
-                saveImage()
+                if (type.equals(IMAGAE)) saveImage()
+                else saveVideo()
+
             }
             cardViewDelete.setOnClickListener {
-                deleteImage()
+                if (type.equals(IMAGAE)) deleteImage()
+                else deleteVideo()
             }
         }
+    }
+
+    private fun deleteVideo() {
+        if (viewModel.deleteVideo(uri)) finish()
+    }
+
+    private fun saveVideo() {
+        if (viewModel.saveVideo(uri)) binding.cardViewSave.visibility = View.GONE
     }
 
     private val intentSender =
         registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
             if (it.resultCode == RESULT_OK) {
-                binding.cardViewDelete.visibility=View.GONE
+                binding.cardViewDelete.visibility = View.GONE
                 finish()
             }
         }
@@ -112,12 +126,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getIntentData() {
-        var type = ""
+
         if (intent.getStringExtra(ImageFragment.IMAGE_URI)?.isNotEmpty() == true) {
-            type = "Image"
+            type = IMAGAE
             uri = intent.getStringExtra(ImageFragment.IMAGE_URI)!!
         } else if (intent.getStringExtra(VideoFragment.VIDEO_URI)?.isNotEmpty() == true) {
-            type = "Video"
+            type = VIDEO
             uri = intent.getStringExtra(VideoFragment.VIDEO_URI)!!
         }
 

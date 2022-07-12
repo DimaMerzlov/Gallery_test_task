@@ -1,13 +1,15 @@
 package com.example.gallerytesttask.viewmodel
 
+import android.R.attr.data
 import android.content.ContentValues
 import android.content.Context
+import android.content.res.AssetFileDescriptor
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.provider.BaseColumns
 import android.provider.MediaStore
 import android.util.Log
@@ -19,10 +21,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 import java.util.*
 import javax.inject.Inject
 
@@ -150,5 +149,43 @@ class DetailViewModel @Inject constructor(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             id.toInt().toString()
         )
+    }
+
+    fun saveVideo(uri: String):Boolean {
+        try {
+            val newfile: File
+            val videoAsset: AssetFileDescriptor? =
+                context.getContentResolver().openAssetFileDescriptor(Uri.fromFile(File(uri)), "r")
+            val inputStream: FileInputStream? = videoAsset?.createInputStream()
+            val filepath = Environment.getExternalStorageDirectory()
+            val dir = File(filepath.absolutePath + "/" + "Your Folder Name" + "/")
+            if (!dir.exists()) {
+                dir.mkdirs()
+            }
+            newfile = File(dir, "save_" + System.currentTimeMillis() + ".mp4")
+            if (newfile.exists()) newfile.delete()
+            val out: OutputStream = FileOutputStream(newfile)
+
+            // Copy the bits from instream to outstream
+            val buf = ByteArray(1024)
+            var len: Int
+            if (inputStream!=null){
+                while (inputStream.read(buf).also { len = it } > 0) {
+                    out.write(buf, 0, len)
+                }
+                inputStream.close()
+                out.close()
+            }
+            Log.v("", "Copy file successful.")
+            return true
+        } catch (e: java.lang.Exception) {
+            return false
+            e.printStackTrace()
+        }
+
+    }
+
+    fun deleteVideo(uri: String): Boolean {
+        return File(uri).delete()
     }
 }
